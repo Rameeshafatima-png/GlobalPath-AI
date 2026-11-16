@@ -1,83 +1,166 @@
-# GlobalPath AI — Single-Folder Study Abroad Planner
+# GlobalPath AI
+### Your AI-Powered Study Abroad Planner
 
-A full-stack study-abroad planning application powered by one LangGraph AI agent. Enter a destination country, degree, budget and field to receive a personalized plan with university options, scholarships, activities, estimated costs and an application roadmap.
+<p align="center">
+  An intelligent study-abroad planning assistant that helps students explore universities, scholarships, estimated costs, and application pathways through AI-powered research.
+</p>
 
-## Architecture
+<p align="center">
+  <img src="https://img.shields.io/badge/Python-3.10%2B-blue?style=for-the-badge&logo=python&logoColor=white" alt="Python">
+  <img src="https://img.shields.io/badge/FastAPI-Backend-009688?style=for-the-badge&logo=fastapi&logoColor=white" alt="FastAPI">
+  <img src="https://img.shields.io/badge/LangGraph-AI%20Workflow-1C3C3C?style=for-the-badge" alt="LangGraph">
+  <img src="https://img.shields.io/badge/Google-Gemini-4285F4?style=for-the-badge&logo=google&logoColor=white" alt="Google Gemini">
+  <img src="https://img.shields.io/badge/Tavily-Web%20Research-6C47FF?style=for-the-badge" alt="Tavily">
+</p>
 
-**Single agent, single task.** One LangGraph node (`study_abroad_planner`) performs the study-abroad planning task. FastAPI serves both the API and the HTML/CSS/JavaScript website. No separate frontend server is needed.
+---
 
-## Structure
+## Overview
+
+**GlobalPath AI** is an AI-powered study-abroad planning application designed to simplify the process of exploring international education opportunities.
+
+Choosing a university abroad involves researching admission requirements, tuition fees, scholarships, living expenses, and application deadlines. GlobalPath AI brings these planning activities together in one intelligent application.
+
+By combining **LangGraph, Google Gemini, Tavily Search, and FastAPI**, the application generates personalized study-abroad plans based on a student's academic profile, preferred destination, field of study, and budget.
+
+## Key Features
+
+- **Personalized Study Plans:** Generates study-abroad recommendations based on student preferences and academic profiles.
+- **University Recommendations:** Researches relevant universities and programs.
+- **Scholarship Discovery:** Identifies potential scholarship opportunities.
+- **Cost Estimation:** Organizes estimated tuition, accommodation, living, travel, visa, and other expenses where information is available.
+- **AI-Powered Research:** Uses Tavily to gather relevant web research.
+- **Intelligent Planning:** Uses Google Gemini to analyze research and generate structured recommendations.
+- **Application Roadmap:** Provides a step-by-step application preparation plan.
+- **Source-Aware Responses:** Includes research sources to help students verify important information.
+
+## Technology Stack
+
+| Technology | Purpose |
+|---|---|
+| Python | Core application development |
+| FastAPI | Backend and API framework |
+| LangGraph | AI workflow orchestration |
+| Google Gemini | AI reasoning and plan generation |
+| Tavily Search | Web research and information retrieval |
+| HTML5 | Frontend structure |
+| CSS3 | User interface styling |
+| JavaScript | Frontend interactions |
+| Uvicorn | ASGI server |
+
+## How It Works
+
+GlobalPath AI follows a simple AI-powered workflow:
+
+1. **Student Profile:** The student provides academic details, preferred country, study level, field, and budget.
+2. **Web Research:** Tavily searches for relevant university, scholarship, and study-abroad information.
+3. **AI Analysis:** Google Gemini analyzes the student profile and gathered research.
+4. **Plan Generation:** LangGraph manages the planning workflow and produces structured recommendations.
+5. **Results:** The application presents a personalized study-abroad plan with universities, scholarships, estimated costs, and an application roadmap.
+
+## Project Architecture
 
 ```text
-GlobalPath_AI/
+GlobalPath-AI/
+│
 ├── app.py
-├── schemas.py
 ├── study_agent.py
 ├── prompts.py
+├── schemas.py
 ├── requirements.txt
-├── .env.example
-├── README.md
-├── templates/index.html
-└── static/
-    ├── style.css
-    └── script.js
+├── .env
+│
+├── templates/
+│   └── index.html
+│
+├── static/
+│   ├── style.css
+│   └── script.js
+│
+└── README.md
 ```
 
-## Setup (Windows PowerShell)
+### Core Components
 
-Run these commands from this folder:
+| File | Responsibility |
+|---|---|
+| `app.py` | FastAPI application and backend routes |
+| `study_agent.py` | LangGraph workflow, Tavily research, and Gemini integration |
+| `prompts.py` | AI system instructions and response structure |
+| `schemas.py` | Data models and request/response structure |
+| `templates/index.html` | Main application interface |
+| `static/style.css` | Frontend styling |
+| `static/script.js` | Frontend functionality |
+| `requirements.txt` | Python dependencies |
+
+## Installation & Setup
+
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/Rameeshafatima-png/GlobalPath-AI.git
+```
+
+### 2. Navigate to the Project
+
+```bash
+cd GlobalPath-AI
+```
+
+### 3. Create a Virtual Environment
+
+**Windows:**
 
 ```powershell
 python -m venv venv
-.\venv\Scripts\Activate.ps1
-pip install -r requirements.txt
-Copy-Item .env.example .env
+venv\Scripts\activate
 ```
 
-Add your keys to `.env`:
+### 4. Install Dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+### 5. Configure Environment Variables
+
+Create a `.env` file in the root directory:
 
 ```env
-GOOGLE_API_KEY=your_gemini_api_key
-GEMINI_MODEL=gemini-2.5-flash
+GOOGLE_API_KEY=your_google_api_key
 TAVILY_API_KEY=your_tavily_api_key
+GEMINI_MODEL=gemini-3.5-flash-lite
 ```
 
-Start the complete application with one command:
+Replace the placeholder values with your own API credentials.
 
-```powershell
+**API Providers:**
+- Google AI Studio: https://aistudio.google.com/
+- Tavily: https://tavily.com/
+
+**Security:** Never upload your `.env` file or expose API keys in public repositories.
+
+### 6. Run the Application
+
+```bash
 uvicorn app:app --reload
 ```
 
-Open **http://127.0.0.1:8000**. API docs: http://127.0.0.1:8000/docs
+Open your browser and visit:
 
-## API
-
-`POST /api/study-plan`
-
-Example JSON:
-
-```json
-{
-  "country": "Germany",
-  "degree": "Master's",
-  "budget": 15000,
-  "currency": "EUR",
-  "budget_type": "annual",
-  "field": "Artificial Intelligence",
-  "academic_score": "82%",
-  "english_test": "IELTS 6.5",
-  "intake": "Winter 2027"
-}
+```text
+http://127.0.0.1:8000
 ```
 
-## Environment variables
+## Example Use Case
 
-- `GOOGLE_API_KEY` — required for Gemini.
-- `GEMINI_MODEL` — optional; defaults to `gemini-2.5-flash`.
-- `TAVILY_API_KEY` — optional, recommended for live web research.
+A student wants to pursue a Bachelor's degree in Computer Science in Canada.
 
-Without Tavily, the model can still draft a plan, but it cannot perform live research. Verify fees, scholarships, deadlines, admission requirements and visa rules on official university and government websites. Costs are estimates and may change. No admission, scholarship or visa outcome is guaranteed.
+The student provides:
+- Preferred destination: Canada
+- Study level: Bachelor's
+- Field of interest: Computer Science
+- Annual budget: Student-defined budget
+- Academic background: Student-provided qualifications
 
-## License
-
-MIT
+GlobalPath AI researches relevant
