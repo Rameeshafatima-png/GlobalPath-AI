@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>GlobalPath AI — Study Abroad Planner</title><link rel="stylesheet" href="/static/style.css"></head>
+<body><div class="grid"></div><header><a class="brand" href="/">◎ GLOBALPATH<span>.AI</span></a><small> SINGLE-AGENT STUDY PLANNER</small></header>
+<main><section class="hero"><label>YOUR FUTURE, MAPPED OUT</label><h1>Make your study abroad<br><em>plan a reality.</em></h1>
+<p>Share your destination, degree, field and budget. Your AI planner will turn your goals into a practical study-abroad roadmap.</p>
+<div class="features"><span>Global destinations</span><span>Budget-aware options</span><span>Personalized roadmap</span></div></section>
+<section class="layout"><div class="panel"><div class="kicker">01 / YOUR PROFILE</div><h2>Build your study plan</h2><p class="muted">Start with four essential details.</p>
+<form id="form"><label>Destination country *</label><input name="country" placeholder="e.g. Germany, Canada, UK" required>
+<div class="two"><div><label>Degree level *</label><select name="degree"><option>Bachelor's</option><option>Master's</option><option>PhD</option><option>Diploma</option></select></div>
+<div><label>Field of study *</label><input name="field" placeholder="e.g. Artificial Intelligence" required></div></div>
+<label>Your budget *</label><div class="budget"><input name="budget" type="number" min="1" placeholder="Enter amount" required><select name="currency"><option>USD</option><option>PKR</option><option>EUR</option><option>GBP</option><option>CAD</option><option>AUD</option></select></div>
+<div class="two radios"><label><input type="radio" name="budget_type" value="annual" checked> Annual budget</label><label><input type="radio" name="budget_type" value="total"> Total degree budget</label></div>
+<details><summary>+ Add optional details</summary><div class="two"><div><label>Academic score</label><input name="academic_score" placeholder="e.g. 82% / 3.4 GPA"></div><div><label>English test</label><input name="english_test" placeholder="e.g. IELTS 6.5"></div></div><label>Preferred intake</label><input name="intake" placeholder="e.g. Fall 2027"></details>
+<div id="error" class="error hidden"></div><button id="submit">Generate my study plan →</button><p class="tiny">Your details are used only to generate this plan.</p></form></div>
+<aside class="panel aside"><div class="orb">◎</div><label>HOW IT WORKS</label><h2>One agent.<br>One clear goal.</h2><p class="muted">A single AI agent analyzes your profile and researches study options to create one connected plan.</p>
+<div class="steps"><p><b>01</b><span>Analyze your profile<small>Understand goals and budget</small></span></p><p><b>02</b><span>Research opportunities<small>Universities and scholarships</small></span></p><p><b>03</b><span>Estimate your costs<small>Tuition, living and travel</small></span></p><p><b>04</b><span>Build your roadmap<small>From application to arrival</small></span></p></div></aside></section>
+<section id="results" class="hidden"><div class="result-head"><div class="kicker">02 / YOUR PERSONALIZED REPORT</div><h2>Your study abroad roadmap</h2></div><div id="summary" class="panel"></div><div id="cards" class="cards"></div><div id="sources" class="panel"></div></section>
+<footer>GLOBALPATH.AI <span>Plan with purpose. Study without guesswork.</span></footer></main><script src="/static/script.js"></script></body></html>
